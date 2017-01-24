@@ -1,0 +1,38 @@
+{
+  "name": "twig-to-jsx",
+  "version": "1.0.0",
+  "description": "Transpiles twig files into a jsx ready syntax using node",
+  "main": "./bin/run.js",
+  "bin": {
+    "twig-to-jsx": "run.js"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register --slow 100 --recursive ./test/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexPoirier1/Twig-to-jsx.git"
+  },
+  "keywords": [
+    "twig",
+    "js",
+    "transform",
+    "transpile"
+  ],
+  "author": "Alexandre Poirier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlexPoirier1/Twig-to-jsx/issues"
+  },
+  "homepage": "https://github.com/AlexPoirier1/Twig-to-jsx#readme",
+  "dependencies": {
+    "babel-core": "^6.22.1",
+    "babel-register": "^6.22.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.22.0"
+  }
+}

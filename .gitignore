@@ -1,0 +1,11 @@
+# build
+build/
+bower_components/
+node_modules/
+vendor/
+tmp/
+
+# ignore PHPStorm configs.
+.idea/
+
+npm-debug.log
