@@ -7,5 +7,6 @@ tmp/
 
 # ignore PHPStorm configs.
 .idea/
+.vscode
 
 npm-debug.log
