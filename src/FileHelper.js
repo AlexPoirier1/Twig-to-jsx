@@ -16,18 +16,23 @@ class FileHelper {
             fd: null,
         });
 
+        let lock = false;
         readable.on('readable', function() {
-            let chunk;
+            if(!lock) {
+                let chunk;
+                lock = true;
             
-            while (null !== (chunk = readable.read(1))) {
-                if(x % 1000 === 0 && x !== 0) { // Separate in 1000 char chunks.
-                    chunks++;
-                    output.push([]);
+                while (null !== (chunk = readable.read(1))) {
+                    if(x % 1000 === 0 && x !== 0) { // Separate in 1000 char chunks.
+                        chunks++;
+                        output.push([]);
+                    }
+                    output[chunks].push(chunk); 
+                    x++;
                 }
-                output[chunks].push(chunk); 
-                x++;
+                callback(output);
             }
-            callback(output);
+            
         });
     }
 

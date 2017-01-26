@@ -16,11 +16,12 @@ if(!output_path) {
 }
 
 helper.read(path, (data) => {
-    
+    console.log('Starting conversion...');
     const converted_str = transpiler.toJSX(data);
     helper.output(path + '.jsx', converted_str, (code) => {
         if(code === 1) {
             console.log('Conversion successful, output to file : ' + path + '.jsx');
+            process.exit(0);
         }
     })
     
