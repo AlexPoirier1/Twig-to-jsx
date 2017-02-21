@@ -11,14 +11,15 @@ class Transpiler {
             'class=': 'className=',
             'onclick': 'onClick',
             ' not ': '!',
-            ' and ': '&&',
-            ' or ': '||',
+            ' and ': ' && ',
+            ' or ': ' || ',
             '{#': '{/*',
             '#}': '*/}',
             '{{ ': '{',
             ' }}': '}',
             '|join': '.join',
             '%}': '[CLOSE_TAG]',
+            'for=': 'htmlFor=',
         };
     }
 

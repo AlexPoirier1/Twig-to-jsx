@@ -28,7 +28,7 @@
 
                                                         {/* Colored button */}
                                                         <a id="fna_client_access_button" className="toggle_dialog no-underline btn btn-access"><b id="fna_client_access">
-                                                                <If condition={ (model.client_access === false||model.client_access.disabled === "1"||model.client_access.status === "DISABLED") }>
+                                                                <If condition={ (model.client_access === false || model.client_access.disabled === "1" || model.client_access.status === "DISABLED") }>
                                                                     {app._('CLIENT_ACCESS_DEACTIVATED')}
                                                                 {% elseif (model.client_access.status === 'PENDING') }>
                                                                     {app._('CLIENT_ACCESS_PENDING')}
@@ -44,7 +44,7 @@
                                                         <div className="dialog dlg3" id="change_fna_client_access_dialog">
                                                                 <div className="dlg-box arrow-box">
                                                                         <div className="gutter">
-                                                                                <If condition={ (model.client_access === false||model.client_access.disabled === "1"||model.client_access.status === "DISABLED") }>
+                                                                                <If condition={ (model.client_access === false || model.client_access.disabled === "1" || model.client_access.status === "DISABLED") }>
                                                                                         <div id="client_access_activate">
                                                                                             <a className="modify_client_access btn no-underline write_only" href="javascript:void(0);">{app._('ACTIVATE_CLIENT_ACCESS')}</a>
                                                                                         </div>
@@ -150,7 +150,7 @@
 
                                     <div className="relative text-small margin-top-5">
                                         <input type="checkbox" id="fna_confirm_completed" name="fna_confirm_completed" className="checkbox-custom" value="YES" />
-                                        <label for="fna_confirm_completed" id="fna_confirm_label" value="YES" className="infos checkbox-custom-label">{app._('CONFIRM_COMPLETED')}</label>
+                                        <label htmlFor="fna_confirm_completed" id="fna_confirm_label" value="YES" className="infos checkbox-custom-label">{app._('CONFIRM_COMPLETED')}</label>
                                         <span id="fna_confirm_completed_hint" className="margin-left-20 v-align-top"></span>
                                     </div>
                                     </div>

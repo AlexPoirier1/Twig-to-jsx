@@ -179,3 +179,36 @@
         </div>
     </div>
 </div>
+
+<ul class="header-actions-all">
+                            {#<li>#}
+                                {#<a id="goto_meeting">
+                                    <span class="ico icon-modern-mic"></span>Basculer en entrevue
+                                </a>#}
+                            {#</li>#}
+                            <li>
+                                <a id="goto_history" href="#FNA/History/{{ model.record_id ? model.record_id : model.id }}" onclick="dataLayer.push({'event':'action','action_type':'show_revisions'});">
+                                    <span class="ico icon-history"></span>{{ app._('GO_TO_REVISIONS') }}
+                                </a>
+                            </li>
+                            <li class="hide_from_client" onclick="dataLayer.push({'event':'action','action_type':'print_paper'});">
+                                <a id="print_paper">
+                                    <span class="ico icon-printer"></span>{{ app._('PRINT_PAPER') }}
+                                </a>
+                            </li>
+                            <li class="hide_from_client" onclick="dataLayer.push({'event':'action','action_type':'print_report'});">
+                                <a id="print_report">
+                                    <span class="ico icon-printer"></span>{{ app._('PRINT_REPORT') }}
+                                </a>
+                            </li>
+                            <li class="hide_from_client external_update_action" style="display:none">
+                                <a id="force_external_update">
+                                    <span class="ico icon-edit"></span>{{ app._('UPDATE_FROM_EXTERNAL_APPLICATION') }} {{ app.store.getApplicationName() }}
+                                </a>
+                            </li>
+                            <li>
+                                <a id="delete" class="delete write_only">
+                                    <span class="ico icon-bin"></span>{{ app._('DELETE') }}
+                                </a>
+                            </li>
+                        </ul>
