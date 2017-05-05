@@ -1,29 +1,37 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-var vscode = require('vscode');
+const vscode = require('vscode');
+const Transpiler = require('./Transpiler');
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+const transpiler = new Transpiler();
+
 function activate(context) {
+    const disposable = vscode.commands.registerCommand('extension.convertTwig', function () {
+        if(vscode.window.activeTextEditor) {
+            const active_editor = vscode.window.activeTextEditor.document;
 
-    // Use the console to output diagnostic information (console.log) and errors (console.error)
-    // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "twig-to-jsx" is now active!');
-
-    // The command has been defined in the package.json file
-    // Now provide the implementation of the command with  registerCommand
-    // The commandId parameter must match the command field in package.json
-    var disposable = vscode.commands.registerCommand('extension.convertTwig', function () {
-        var active_editor_text = vscode.window.activeTextEditor.document.getText();
-
-        
+            console.log('Starting conversion...');
+            const converted_str = transpiler.toJSX(active_editor.getText());
+            
+            const start = new vscode.Position(0, 0);
+            const end = new vscode.Position(active_editor.lineCount, 0); // FIXME the char offset is wrong
+            const range = new vscode.Range(start, end);
+            const edit = new vscode.TextEdit(range, converted_str);
+            const workspace_edit = new vscode.WorkspaceEdit();
+            
+            try {
+                workspace_edit.set(active_editor.uri, [edit]);
+                vscode.workspace.applyEdit(workspace_edit);
+                console.log('Conversion successful!');
+            }
+            catch(e) {
+                console.error(e);
+            }
+        }
     });
 
     context.subscriptions.push(disposable);
 }
 exports.activate = activate;
 
-// this method is called when your extension is deactivated
 function deactivate() {
 }
 exports.deactivate = deactivate;

@@ -44,6 +44,8 @@
         "typescript": "^2.0.3",
         "vscode": "^1.0.0",
         "mocha": "^2.3.3",
+        "sinon": "^1.17.7",
+        "chai": "^3.5.0",
         "eslint": "^3.6.0",
         "@types/node": "^6.0.40",
         "@types/mocha": "^2.2.32",
@@ -52,9 +54,6 @@
     "dependencies": {
         "babel-core": "^6.22.1",
         "babel-register": "^6.22.0",
-        "chai": "^3.5.0",
-        "lodash": "^4.17.4",
-        "mocha": "^3.2.0",
-        "sinon": "^1.17.7"
+        "lodash": "^4.17.4"
     }
 }
