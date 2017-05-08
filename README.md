@@ -1,4 +1,4 @@
-# twig-to-jsx README
+# twig-to-jsx
 
 Converts a twig file into a jsx-ready syntax. Currently this is using some personalized twig tags so use at your own risk. I hope to add support for custom twig tags soon.
 
