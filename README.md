@@ -23,10 +23,10 @@ In order to keep the file structure as close to the original as possible, any co
 
 ## Release Notes
 
-###1.1.0
+### 1.1.0
 
 - Add support for selection conversion
 
-###1.0.0
+### 1.0.0
 
 - Initial release
