@@ -27,13 +27,18 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.convertTwig"
+        "onCommand:extension.convertFile",
+        "onCommand:extension.convertSelection"
     ],
     "main": "./src/extension",
     "contributes": {
         "commands": [{
-            "command": "extension.convertTwig",
-            "title": "Twig-to-jsx"
+            "command": "extension.convertFile",
+            "title": "Twig-to-jsx (convert current file)"
+        },
+        {
+            "command": "extension.convertSelection",
+            "title": "Twig-to-jsx (convert selection)"
         }]
     },
     "scripts": {

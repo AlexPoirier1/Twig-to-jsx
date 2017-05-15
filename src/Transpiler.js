@@ -5,7 +5,8 @@ class Transpiler {
         // todo: Add support for user defined settings and remove case specific mappings (app)
         this.mapping = {
             '{% if': '<If condition={',
-            ' app.': ' $.app.',
+            '{% else %}': '<Else />',
+            'app.': ' $.app.',
             '==': '===',
             '{% endif %}': '</If>',
             'class=': 'className=',
