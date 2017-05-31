@@ -19,9 +19,13 @@ In order to keep the file structure as close to the original as possible, any co
 - Some app specific codes are still to be removed
 - `onClick` functions should convert to an anonymous function `() => {[CODE HERE]}`
 - The `style` tag should convert to a style object
-- The `include` twig tag is not yet supported
 
 ## Release Notes
+
+### 1.2.0
+
+- Add support for the 'include' tag
+- Rework code for more extensibility
 
 ### 1.1.0
 
