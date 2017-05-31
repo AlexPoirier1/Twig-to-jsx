@@ -9,14 +9,16 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/AlexPoirier1/Twig-to-jsx.git"
+        "url": "https://github.com/AlexPoirier1/Twig-to-jsx.git"
     },
     "keywords": [
         "twig",
         "js",
-        "transform",
-        "transpile"
+        "transform"
     ],
+    "galleryBanner": {
+        "color": "#BACF29"
+    },
     "author": "Alexandre Poirier",
     "license": "MIT",
     "bugs": {

@@ -1,27 +1,11 @@
 const _ = require('lodash');
 
+const Mapper = require('./Mapper.js');
+const Replace = require('./Actions/Replace.js');
+
 class Transpiler {
     constructor() {
-        // todo: Add support for user defined settings and remove case specific mappings (app)
-        this.mapping = {
-            '{% if': '<If condition={',
-            '{% else %}': '<Else />',
-            'app.': ' $.app.',
-            '==': '===',
-            '{% endif %}': '</If>',
-            'class=': 'className=',
-            'onclick': 'onClick',
-            ' not ': '!',
-            ' and ': ' && ',
-            ' or ': ' || ',
-            '{#': '{/*',
-            '#}': '*/}',
-            '{{ ': '{',
-            ' }}': '}',
-            '|join': '.join',
-            '%}': '[CLOSE_TAG]',
-            'for=': 'htmlFor=',
-        };
+        this.mapper = new Mapper();
     }
 
     toJSX(data) {
@@ -49,26 +33,25 @@ class Transpiler {
                 }
             }
         }
-
         return output_str;
     }
 
-    map(char, current_open_tag) {
+    map(key, current_open_tag) {
         let mapped = false;
         let mappee = '';
 
-        if(this.mapping[char]) {
+        if(this.mapper.map(key)) {
             // Direct match
-            return new Match(char, this.mapping[char], current_open_tag);
+            return this.doAction(key, current_open_tag);
         }
         else {
-            // Entire string does not match but maybe part of it will
+            // Entire string does not match but maybe part of it will, let's search
             let found = false;
-            _.forEach(Object.keys(this.mapping), (key) => {
-                for(let x = 0; x < char.length; x++) {
-                    if(char.substr(x) === key) {
+            _.forEach(this.mapper.iterator(), iterator_key => {
+                for(let x = 0; x < key.length; x++) {
+                    if(key.substr(x) === iterator_key) {
                         mapped = true;
-                        mappee = char.substr(x);
+                        mappee = key.substr(x);
                         found = true;
                         break;
                     }
@@ -78,46 +61,21 @@ class Transpiler {
                 }
             });
             if(mapped) {
-                return new Match(mappee, this.mapping[mappee], current_open_tag);
+                return this.doAction(mappee, current_open_tag);
             }
         }
-        
         return false; 
     }
-}
 
-class Match {
-    constructor(mappee, mapping, current_tag) {
-        this.original = mappee;
-        this.new = mapping;
-        this.open_tag = current_tag || false;
-
-        if(this.new.includes('<')) {
-            const tag_start = this.new.indexOf('<');
-            const end_of_tag_start = this.new.indexOf(' ', tag_start)-1;
-            this.open_tag = this.new.substr(tag_start + 1, end_of_tag_start);
+    doAction(key, current_open_tag) {
+        switch(this.mapper.map(key).action) {
+            case 'REPLACE':
+                return this.doReplace(key, current_open_tag);
         }
+    }
 
-        switch(this.new) {
-            case '[CLOSE_TAG]':
-                if(this.open_tag) {
-                    switch(this.open_tag) {
-                        case 'If':
-                            this.new = '}>';
-                            break;
-                        default:
-                            this.new = '>';
-                            break;
-                    }
-                }
-                else {
-                    this.new = this.original;
-                    this.open_tag = '[RESET]';
-                }
-                break;
-            default:
-                break
-        }
+    doReplace(key, current_open_tag) {
+        return new Replace(key, this.mapper.map(key), current_open_tag);
     }
 }
 
