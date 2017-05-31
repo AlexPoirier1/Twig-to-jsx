@@ -2,7 +2,7 @@
     "name": "twig-to-jsx",
     "displayName": "twig-to-jsx",
     "description": "Helps with the conversion of a twig file into a jsx syntax.",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "publisher": "alexandrepoirier",
     "engines": {
         "vscode": "^1.10.0"
